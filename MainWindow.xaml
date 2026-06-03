@@ -1,0 +1,118 @@
+﻿<Window x:Class="request_tool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:request_tool"
+        mc:Ignorable="d"
+        Title="T Cloud Public API Request Tool" Height="700" Width="800">
+    <DockPanel Margin="4">
+        <UniformGrid Rows="1"  DockPanel.Dock="Top"  Margin="4">
+            <DockPanel>
+                <Label>Key</Label>
+                <TextBox Name="textKey"></TextBox>
+            </DockPanel>
+            <DockPanel>
+                <Label>Secret</Label>
+                <PasswordBox Name="textSecret"></PasswordBox>
+            </DockPanel>
+        </UniformGrid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Row="0" Name="history" ItemsSource="{Binding Path=history, Mode=TwoWay}" MouseDoubleClick="history_DoubleClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Method, Mode=TwoWay}" FontWeight="Bold" />
+                            <TextBlock Text=" "></TextBlock>
+                            <TextBlock Text="{Binding Url, Mode=TwoWay}"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <GridSplitter Width="2" VerticalAlignment="Stretch"></GridSplitter>
+            <DockPanel Grid.Column="1" Margin="2">
+                <DockPanel DockPanel.Dock="Top"  Margin="4">
+                    <ComboBox Name="comboMethod" Width="90" DockPanel.Dock="Left" Margin="1">
+                        <ComboBoxItem IsSelected="True">GET</ComboBoxItem>
+                        <ComboBoxItem>POST</ComboBoxItem>
+                        <ComboBoxItem>PUT</ComboBoxItem>
+                        <ComboBoxItem>DELETE</ComboBoxItem>
+                        <ComboBoxItem>HEAD</ComboBoxItem>
+                        <ComboBoxItem>OPTIONS</ComboBoxItem>
+                    </ComboBox>
+                    <Button Name="buttonSend" DockPanel.Dock="Right" Width="80" Margin="1" Click="buttonSend_Click">Send</Button>
+                    <TextBox Name="textUrl"  Margin="1"></TextBox>
+                </DockPanel>
+
+                <TabControl Height="250" DockPanel.Dock="Top">
+                    <TabItem Header="Settings">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <CheckBox IsChecked="{Binding sslVerify}">SSL verify</CheckBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Label>timeout (s)</Label>
+                                <TextBox Width="50" Text="{Binding timeOutSec}"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <CheckBox IsChecked="{Binding proxyEnable}" Click="proxyEnableChanged">proxy</CheckBox>
+                            </StackPanel>
+                            <StackPanel Name="proxyUrl" Orientation="Horizontal" Margin="5">
+                                <Label>proxy url</Label>
+                                <TextBox Width="200" Text="{Binding proxyUrl}"></TextBox>
+                            </StackPanel>
+                            <StackPanel Name="proxyUser" Orientation="Horizontal" Margin="5">
+                                <Label>proxy username</Label>
+                                <TextBox Width="200" Text="{Binding proxyUser}"></TextBox>
+                            </StackPanel>
+                            <StackPanel Name="proxyPassword" Orientation="Horizontal" Margin="5">
+                                <Label>proxy password</Label>
+                                <PasswordBox Name="textProxyPassword" Width="200"></PasswordBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </TabItem>
+
+                    <TabItem Header="Headers" IsSelected="True">
+                        <DockPanel>
+                            <Button Width="80" HorizontalAlignment="Right" DockPanel.Dock="Top" Click="addRow_Click">Add</Button>
+                            <DataGrid Name="dataGrid1" ItemsSource="{Binding Path=., Mode=TwoWay}"
+                            AutoGenerateColumns="False" GridLinesVisibility="None" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Key" Width="*" Binding="{Binding Key, Mode=TwoWay}"/>
+                                    <DataGridTextColumn Header="Value" Width="*" Binding="{Binding Value, Mode=TwoWay}"/>
+                                    <DataGridTemplateColumn Header="" Width="80">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Click="buttonDeleteHeader_Click">Delete</Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </TabItem>
+                    <TabItem Header="Body">
+                        <TextBox Name="textBody" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Body, Mode=TwoWay}"/>
+                        <!-- <TextBlock Text="{Binding Body, Mode=TwoWay}"/> -->
+                    </TabItem>
+                </TabControl>
+                <TabControl DockPanel.Dock="Top">
+                    <TabItem Header="Debug Info">
+                        <TextBox IsReadOnly="True" Name="textDebugInfo" TextWrapping="Wrap" ></TextBox>
+                    </TabItem>
+                    <TabItem Header="Request Headers">
+                        <TextBox IsReadOnly="True" Name="textReqHeaders" TextWrapping="Wrap" ></TextBox>
+                    </TabItem>
+                    <TabItem Header="Response" IsSelected="True">
+                        <TextBox IsReadOnly="True" Name="textResp" TextWrapping="Wrap" ></TextBox>
+                    </TabItem>
+                </TabControl>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</Window>

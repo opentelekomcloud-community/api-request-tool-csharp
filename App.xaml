@@ -1,0 +1,9 @@
+﻿<Application x:Class="request_tool.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:request_tool"
+             Startup="Application_Startup" Exit="Application_Exit">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <sslVerify>true</sslVerify>
+  <timeOutSec>5</timeOutSec>
+  <proxyEnable>false</proxyEnable>
+  <proxyUrl />
+  <proxyUser />
+  <history>
+    <HisRequest>
+      <Method>POST</Method>
+      <Url>https://ecs.eu-de.otc.t-systems.com/v1/{PROJECT_ID}/cloudservers/action</Url>
+      <Headers>
+        <Header>
+          <Key>X-Project-Id</Key>
+          <Value>{PROJECT_ID}</Value>
+        </Header>
+        <Header>
+          <Key>Content-Type</Key>
+          <Value>application/json</Value>
+        </Header>
+      </Headers>
+      <Body>{"os-start": {"servers": [ {"id": "{ECS_INSTANCE_ID}"}]}}</Body>
+    </HisRequest>
+  </history>
+</Config>

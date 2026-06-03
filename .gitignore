@@ -1,0 +1,10 @@
+bin/
+obj/
+dotnet-install.sh
+build
+.tox
+Deployment
+# Ignore NuGet Packages
+nupkgs/
+*.nupkg
+*.snupkg
