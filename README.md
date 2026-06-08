@@ -32,6 +32,30 @@ dotnet build api-request-tool.csproj -c Debug
 dotnet run --project api-request-tool.csproj -c Debug
 ```
 
+## Build standalone exe
+
+```
+dotnet publish .\api-request-tool.csproj -c Release
+```
+
+Equivalent explicit command:
+
+```
+dotnet publish .\api-request-tool.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:DebugType=None /p:DebugSymbols=false
+```
+
+Output will be in:
+
+```
+bin/Release/net8.0-windows/win-x64/publish
+```
+
+Main file is:
+
+```
+bin/Release/net8.0-windows/win-x64/publish/request-tool.exe
+```
+
 
 > Warranty Disclaimer
 > -------------------
