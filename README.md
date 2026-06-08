@@ -4,7 +4,7 @@
 > Work in progress..
 
 
-Windows tool for sending signed API request to T Cloud Public.
+Windows desktop application for sending signed API request to T Cloud Public written in C#.
 
 ![API Request Tool](./doc/APIRequestTool.png)
 
