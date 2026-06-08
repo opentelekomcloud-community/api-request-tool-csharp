@@ -1,15 +1,12 @@
 # api-request-tool-csharp
 
-> [!NOTE]
-> Work in progress..
-
-
 Windows desktop application for sending signed API request to T Cloud Public written in C#.
 
 ![API Request Tool](./doc/APIRequestTool.png)
 
 For signing request, this tool uses:
-- https://github.com/opentelekomcloud-community/otc-api-sign-sdk-csharp
+- https://github.com/opentelekomcloud-community/otc-api-sign-sdk-csharp 
+  (hosted on [GitHub NuGet registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-nuget-registry) )
 
 To use and install this tool following framework SDKs need to be installed:
 - [.Net Framework SDK 10.0](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
