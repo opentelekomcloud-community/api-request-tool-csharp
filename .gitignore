@@ -8,3 +8,4 @@ Deployment
 nupkgs/
 *.nupkg
 *.snupkg
+*_wpftmp.csproj

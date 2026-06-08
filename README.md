@@ -29,22 +29,40 @@ dotnet build api-request-tool.csproj -c Debug
 ## Run
 
 ```
-dotnet run --project api-request-tool.csproj -c Debug
+dotnet run --project api-request-tool.csproj -c Debug -f net10.0-windows
+```
+
+To run on .NET 8 instead:
+
+```
+dotnet run --project api-request-tool.csproj -c Debug -f net8.0-windows
 ```
 
 ## Build standalone exe
 
 ```
-dotnet publish .\api-request-tool.csproj -c Release
+dotnet publish .\api-request-tool.csproj -c Release -f net10.0-windows
+```
+
+For .NET 8 standalone exe:
+
+```
+dotnet publish .\api-request-tool.csproj -c Release -f net8.0-windows
 ```
 
 Equivalent explicit command:
 
 ```
-dotnet publish .\api-request-tool.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:DebugType=None /p:DebugSymbols=false
+dotnet publish .\api-request-tool.csproj -c Release -f net10.0-windows -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:DebugType=None /p:DebugSymbols=false
 ```
 
 Output will be in:
+
+```
+bin/Release/net10.0-windows/win-x64/publish
+```
+
+For .NET 8 output:
 
 ```
 bin/Release/net8.0-windows/win-x64/publish
@@ -53,7 +71,7 @@ bin/Release/net8.0-windows/win-x64/publish
 Main file is:
 
 ```
-bin/Release/net8.0-windows/win-x64/publish/request-tool.exe
+bin/Release/net10.0-windows/win-x64/publish/request-tool.exe
 ```
 
 
