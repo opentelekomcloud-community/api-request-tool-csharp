@@ -23,7 +23,6 @@ jobs:
     permissions:
       contents: write
       packages: write
-      permissions: write-all
 
     steps:
       - name: Checkout repository
