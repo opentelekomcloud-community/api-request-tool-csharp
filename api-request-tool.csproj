@@ -24,4 +24,14 @@
     <PackageReference Include="OpenTelekomCloud.API.Signing.Core" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- https://github.com/adamralph/minver -->
+    <PackageReference Include="MinVer" Version="6.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!-- https://github.com/adamralph/minver#can-i-prefix-my-tag-names -->
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+  </PropertyGroup>
+
 </Project>

@@ -1,0 +1,57 @@
+name: createRelease
+
+# Workflow creates and publishes NuGet packages to GitHub Packages
+# and creates a GitHub Release with release notes when a new tag is pushed.
+#
+# Usage:
+# - Prepare release notes in releasenotes/vX.Y.Z.md before creating the tag.
+# - commit and push all changes to the main branch.
+# - Create and push a version tag (e.g., v1.0.0) to trigger the workflow, ex.:
+#    git tag v1.0.0
+#    git push origin v1.0.0
+
+on:
+  workflow_dispatch:
+
+  push:
+    tags:
+      - "v*"  # Trigger when a version tag is pushed (e.g., v1.0.0)
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: configure-git-user
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            10.0.x
+            8.0.x
+
+      - name: Build Package
+        run: |          
+          dotnet build
+
+
+      # - name: Create GitHub Release
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     # tag: $
+      #     name: ${{github.ref_name}}
+      #     token: ${{ github.token }}
+      #     generateReleaseNotes: true
+      #     allowUpdates: true
+      #     bodyFile: releasenotes/${{ github.ref_name }}.md
+      #     replacesArtifacts: true
