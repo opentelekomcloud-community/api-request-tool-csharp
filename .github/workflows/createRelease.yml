@@ -47,7 +47,7 @@ jobs:
 
       - name: Build Package
         run: |          
-          dotnet publish .\api-request-tool.csproj -c Release -f net10.0-windows
+          dotnet publish .\api-request-tool.csproj -c Release
 
       - name: Package release artifact
         shell: pwsh
