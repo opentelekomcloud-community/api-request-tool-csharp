@@ -56,12 +56,6 @@ To build standalone exe:
 dotnet publish .\api-request-tool.csproj -c Release
 ```
 
-Equivalent explicit command:
-
-```ps1
-dotnet publish .\api-request-tool.csproj -c Release -f net10.0-windows -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:DebugType=None /p:DebugSymbols=false
-```
-
 Output will be in:
 
 ```ps1
@@ -71,7 +65,7 @@ bin/Release/net10.0-windows/win-x64/publish
 Main file is:
 
 ```ps1
-bin/Release/net10.0-windows/win-x64/publish/request-tool.exe
+bin/Release/net10.0-windows/win-x64/publish/api-request-tool.exe
 ```
 
 
