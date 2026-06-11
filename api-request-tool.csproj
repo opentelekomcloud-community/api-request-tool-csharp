@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenTelekomCloud.API.Signing.Core" Version="0.0.2" />
+    <PackageReference Include="OpenTelekomCloud.API.Signing.Core" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
