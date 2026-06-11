@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 
 [assembly: AssemblyTitle("api-request-tool")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Windows application for testing API requests on T Cloud Public.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("api-request-tool")]
