@@ -48,16 +48,34 @@ jobs:
 
       - name: Build Package
         run: |          
-          dotnet publish .\api-request-tool.csproj -c Release -f net10.0-windows 
+          dotnet publish .\api-request-tool.csproj -c Release -f net10.0-windows
 
+      - name: Package release artifact
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $publishDir = "bin/Release/net10.0-windows/win-x64/publish"
+          $artifactName = "request-tool-$tag-win-x64.zip"
 
-      # - name: Create GitHub Release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     # tag: $
-      #     name: ${{github.ref_name}}
-      #     token: ${{ github.token }}
-      #     generateReleaseNotes: true
-      #     allowUpdates: true
-      #     bodyFile: releasenotes/${{ github.ref_name }}.md
-      #     replacesArtifacts: true
+          if (-not (Test-Path $publishDir)) {
+            throw "Publish output not found: $publishDir"
+          }
+
+          if (Test-Path $artifactName) {
+            Remove-Item $artifactName -Force
+          }
+
+          Compress-Archive -Path "$publishDir/*" -DestinationPath $artifactName -Force
+          "RELEASE_ASSET=$artifactName" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          token: ${{ github.token }}
+          generateReleaseNotes: false
+          allowUpdates: true
+          artifacts: ${{ env.RELEASE_ASSET }}
+          artifactErrorsFailBuild: true
+          replacesArtifacts: true
