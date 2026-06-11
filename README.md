@@ -10,8 +10,6 @@ For signing request, this tool uses:
 
 To use and install this tool following framework SDKs need to be installed:
 - [.Net Framework SDK 10.0](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
-- [.Net Framework SDK 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-
 
 ## Environment variables 
 
@@ -28,16 +26,15 @@ Following enviribment variables should be set
 Using powershell, variables can be set using:
 
 ```ps1
-$env:GITHUB_USERNAME = 
-$env:GITHUB_TOKEN = 
-$env:OTC_SDK_AK =
-$env:OTC_SDK_SK =
+$env:GITHUB_USERNAME = "<your github username>"
+$env:GITHUB_TOKEN = "<your github token>"
+$env:OTC_SDK_AK = "<your access key>"
+$env:OTC_SDK_SK = "<your secret key>"
 ```
 
 ## Build
 
-
-Build for all configured  .Net Frameworks:
+To build execute:
 
 ```ps1
 dotnet build api-request-tool.csproj -c Debug
@@ -45,26 +42,18 @@ dotnet build api-request-tool.csproj -c Debug
 
 ## Run
 
-To run on .NET 10:
+To run execute:
 
 ```ps1
-dotnet run --project api-request-tool.csproj -c Debug -f net10.0-windows
-```
-
-To run on .NET 8 instead:
-
-```ps1
-dotnet run --project api-request-tool.csproj -c Debug -f net8.0-windows
+dotnet run --project api-request-tool.csproj -c Debug
 ```
 
 ## Build standalone exe
 
-
-### .NET 10
-To build standalone exe for .NET 10:
+To build standalone exe:
 
 ```ps1
-dotnet publish .\api-request-tool.csproj -c Release -f net10.0-windows
+dotnet publish .\api-request-tool.csproj -c Release
 ```
 
 Equivalent explicit command:
@@ -77,20 +66,6 @@ Output will be in:
 
 ```ps1
 bin/Release/net10.0-windows/win-x64/publish
-```
-
-### .NET 8
-
-For .NET 8 standalone exe:
-
-```ps1
-dotnet publish .\api-request-tool.csproj -c Release -f net8.0-windows
-```
-
-For .NET 8 output:
-
-```ps1
-bin/Release/net8.0-windows/win-x64/publish
 ```
 
 Main file is:

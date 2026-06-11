@@ -8,7 +8,7 @@ namespace request_tool
     public partial class App : Application
     {
         public static Config config = new Config();
-        string configFile = "config";
+        string configFile = "config.xml";
         XmlSerializer xs = new XmlSerializer(typeof(Config));
 
         private void Application_Startup(object sender, StartupEventArgs e)
