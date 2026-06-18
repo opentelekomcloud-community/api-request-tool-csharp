@@ -13,7 +13,7 @@ To use and install this tool following framework SDKs need to be installed:
 
 ## Environment variables 
 
-Following enviribment variables should be set
+Following environment variables should be set
 
 | Environment variable | Description                                                |
 | -------------------- | ---------------------------------------------------------- |
@@ -40,6 +40,13 @@ To build execute:
 dotnet build api-request-tool.csproj -c Debug
 ```
 
+If cross-compiling on another OS, execute:
+
+```bash
+dotnet build api-request-tool.csproj -c Debug -p:EnableWindowsTargeting=true
+```
+
+
 ## Run
 
 To run execute:
@@ -54,6 +61,12 @@ To build standalone exe:
 
 ```ps1
 dotnet publish .\api-request-tool.csproj -c Release
+```
+
+on another OS:
+
+```bash
+dotnet publish ./api-request-tool.csproj -c Release -p:EnableWindowsTargeting=true
 ```
 
 Output will be in:
